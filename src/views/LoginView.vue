@@ -15,20 +15,21 @@
         elevation="8"
         max-width="448"
         rounded="lg"
+        style="background-color: #1c1d21; color: white"
       >
         <v-text-field
-          density="compact"
+          class="pb-4"
           placeholder="Username"
-          prepend-inner-icon="mdi-email-outline"
+          prepend-inner-icon="mdi-account-outline"
           variant="underlined"
           :rules="[(value) => !!value || 'Username cannot be empty']"
           required
-        ></v-text-field>
+        >
+        </v-text-field>
 
         <v-text-field
           :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
           :type="visible ? 'text' : 'password'"
-          density="compact"
           placeholder="Password"
           prepend-inner-icon="mdi-lock-outline"
           variant="underlined"
@@ -76,11 +77,16 @@
 <script setup>
 import { ref } from "vue";
 
-const visible = ref("false");
+const visible = ref(false);
 </script>
 
 <style lang="scss" scoped>
 // * {
 //   background-color: yellow;
 // }
+
+.dark {
+  background-color: #1c1d21;
+  color: #fff;
+}
 </style>
