@@ -15,5 +15,5 @@ test("displays message", () => {
   });
 
   // Assert the rendered text of the component
-  expect(wrapper.text()).toContain("Your expected text here");
+  expect(wrapper.text()).toContain("Welcome to student portal");
 });
