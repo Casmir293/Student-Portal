@@ -8,17 +8,15 @@
       </div>
     </section>
     <section class="dark">
-      <h2>Login</h2>
-      <p>Enter your account details</p>
       <v-card
-        class="mx-auto pa-12 pb-8"
+        class="mx-auto pa-12 pb-8 text-white bg-grey-darken-2"
         elevation="8"
         max-width="448"
-        rounded="lg"
-        style="background-color: #1c1d21; color: white"
+        rounded="0"
       >
+        <h2 class="pb-2">Login</h2>
+        <p class="pb-4">Enter your account details</p>
         <v-text-field
-          class="pb-4"
           placeholder="Username"
           prepend-inner-icon="mdi-account-outline"
           variant="underlined"
@@ -49,28 +47,26 @@
           >
         </div>
 
-        <v-btn block class="mb-10 mt-4" size="large" color="primary">
+        <v-btn
+          block
+          class="mb-15 mt-8 text-capitalize"
+          size="large"
+          color="primary"
+        >
           Login
         </v-btn>
 
         <div class="text-caption d-flex align-center justify-space-between">
           <span class="text-white">Don't have an account?</span>
 
-          <v-btn class="mt" color="primary" size="large" variant="tonal">
-            Sign up
+          <v-btn class="mt" color="grey-darken-3" size="small">
+            <router-link
+              to="/register"
+              class="text-white text-decoration-none text-capitalize"
+              >Sign up</router-link
+            >
           </v-btn>
         </div>
-
-        <v-card-text class="text-center">
-          <a
-            class="text-blue text-decoration-none"
-            href="#"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
-          </a>
-        </v-card-text>
       </v-card>
     </section>
   </section>
@@ -88,7 +84,6 @@ const visible = ref(false);
 // }
 
 .dark {
-  background-color: #1c1d21;
   color: #fff;
 }
 </style>

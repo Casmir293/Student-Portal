@@ -99,6 +99,7 @@ import { ref } from "vue";
 
 const firstName = ref("");
 const lastName = ref("");
+const visible = ref(false);
 </script>
 
 <style lang="scss" scoped></style>
