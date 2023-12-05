@@ -79,9 +79,9 @@ const visible = ref(false);
 </script>
 
 <style lang="scss" scoped>
-// * {
-//   background-color: yellow;
-// }
+* {
+  font-family: "poppins", fantasy;
+}
 
 .dark {
   color: #fff;
