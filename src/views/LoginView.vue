@@ -40,7 +40,7 @@
 
         <div>
           <a
-            class="text-caption text-decoration-none text-blue"
+            class="text-caption text-decoration-none text-white"
             href="#"
             rel="noopener noreferrer"
             target="_blank"
@@ -49,15 +49,17 @@
           >
         </div>
 
-        <v-btn
-          block
-          class="mb-8 mt-4"
-          color="blue"
-          size="large"
-          variant="tonal"
-        >
-          Log In
+        <v-btn block class="mb-10 mt-4" size="large" color="primary">
+          Login
         </v-btn>
+
+        <div class="text-caption d-flex align-center justify-space-between">
+          <span class="text-white">Don't have an account?</span>
+
+          <v-btn class="mt" color="primary" size="large" variant="tonal">
+            Sign up
+          </v-btn>
+        </div>
 
         <v-card-text class="text-center">
           <a
