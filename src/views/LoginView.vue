@@ -71,7 +71,7 @@
 
       <!-- Purple Section -->
       <section class="purple-section bg-myPurple">
-        <v-row justify="center">
+        <v-row justify="center" class="">
           <v-col cols="12" md="8">
             <v-card
               class="pt-8 text-center"
@@ -81,20 +81,22 @@
             >
               <v-card-item>
                 <v-card-title
-                  ><div class="text-h4 pb-2">
-                    <span class="font-weight-bold">Welcome to</span><br />
+                  ><div class="text-h4 text-sm-h3 pb-2 text-sm-left">
+                    <span class="font-weight-black">Welcome to</span><br />
                     student portal
                   </div></v-card-title
                 >
 
                 <v-card-subtitle
-                  ><div class="font-weight-medium text-subtitle-2">
+                  ><div
+                    class="font-weight-medium text-subtitle-1 text-sm-left pb-sm-5"
+                  >
                     login to access your account
                   </div></v-card-subtitle
                 >
               </v-card-item>
 
-              <v-card-text>
+              <v-card-text class="pa-sm-0">
                 <div>
                   <img src="/src/assets/images/banner.png" alt="login-img" />
                 </div>
@@ -153,6 +155,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 
