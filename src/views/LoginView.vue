@@ -73,7 +73,12 @@
       <section class="purple-section bg-myPurple">
         <v-row justify="center">
           <v-col cols="12" md="8">
-            <v-card class="pt-8 text-center" color="myPurple" rounded="0">
+            <v-card
+              class="pt-8 text-center"
+              color="myPurple"
+              rounded="0"
+              :elevation="0"
+            >
               <v-card-item>
                 <v-card-title
                   ><div class="text-h4 pb-2">
@@ -137,11 +142,17 @@ main {
   .dark-section {
     height: 100vh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .purple-section {
     height: 100vh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
