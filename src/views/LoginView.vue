@@ -6,7 +6,7 @@
         <v-card
           class="mx-auto pa-12 pb-8 text-white bg-myBlack"
           elevation="8"
-          max-width="448"
+          max-width="1000px"
           rounded="0"
         >
           <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
