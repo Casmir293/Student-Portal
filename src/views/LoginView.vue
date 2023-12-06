@@ -1,21 +1,53 @@
 <template>
   <section>
-    <section class="purple">
-      <div><span>Welcome to</span> student portal</div>
-      <div>login to access your account</div>
+    <v-row justify="center">
+      <v-col cols="12" md="8">
+        <v-card class="pt-8 text-center" color="myPurple" rounded="0">
+          <v-card-item>
+            <v-card-title
+              ><div class="text-h4 pb-2">
+                <span class="font-weight-bold">Welcome to</span><br />
+                student portal
+              </div></v-card-title
+            >
+
+            <v-card-subtitle
+              ><div class="font-weight-medium text-subtitle-2">
+                login to access your account
+              </div></v-card-subtitle
+            >
+          </v-card-item>
+
+          <v-card-text>
+            <div>
+              <img src="/src/assets/images/banner.png" alt="login-img" />
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- <section class="purple">
+      <div>
+        <span class="font-weight-bold">Welcome to</span><br />
+        student portal
+      </div>
+      <div class="font-weight-medium">login to access your account</div>
       <div>
         <img src="/src/assets/images/banner.png" alt="login-img" />
       </div>
-    </section>
+    </section> -->
     <section class="dark">
       <v-card
-        class="mx-auto pa-12 pb-8 text-white bg-grey-darken-2"
+        class="mx-auto pa-12 pb-8 text-white bg-myBlack"
         elevation="8"
         max-width="448"
         rounded="0"
       >
-        <h2 class="pb-2">Login</h2>
-        <p class="pb-4">Enter your account details</p>
+        <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
+        <p class="pb-4 font-weight-medium text-subtitle-1">
+          Enter your account details
+        </p>
         <v-text-field
           placeholder="Username"
           prepend-inner-icon="mdi-account-outline"
@@ -51,12 +83,14 @@
           block
           class="mb-15 mt-8 text-capitalize"
           size="large"
-          color="primary"
+          color="myPurple"
         >
           Login
         </v-btn>
 
-        <div class="text-caption d-flex align-center justify-space-between">
+        <div
+          class="text-caption d-flex align-center justify-space-between mb-10"
+        >
           <span class="text-white">Don't have an account?</span>
 
           <v-btn class="mt" color="grey-darken-3" size="small">
@@ -80,10 +114,7 @@ const visible = ref(false);
 
 <style lang="scss" scoped>
 * {
-  font-family: "poppins", fantasy;
-}
-
-.dark {
-  color: #fff;
+  font-family: "poppins", sans-serif;
+  font-weight: 400px;
 }
 </style>

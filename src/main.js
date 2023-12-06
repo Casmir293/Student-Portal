@@ -22,7 +22,8 @@ const vuetify = createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: "#2937b2",
+          myBlack: "#1C1D21",
+          myPurple: "#2937B1",
         },
       },
     },
