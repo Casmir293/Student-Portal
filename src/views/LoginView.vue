@@ -6,7 +6,7 @@
         <v-card
           class="mx-auto pa-12 pb-8 text-white bg-myBlack"
           elevation="8"
-          max-width="1000px"
+          max-width="600"
           rounded="0"
         >
           <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
@@ -70,40 +70,38 @@
       </section>
 
       <!-- Purple Section -->
-      <section class="purple-section bg-myPurple">
-        <v-row justify="center" class="">
-          <v-col cols="12" md="8">
-            <v-card
-              class="pt-8 text-center"
-              color="myPurple"
-              rounded="0"
-              :elevation="0"
+      <section class="purple-section bg-myPurple px-sm-4">
+        <v-card
+          class="pt-8 text-center"
+          color="myPurple"
+          rounded="0"
+          :elevation="0"
+        >
+          <v-card-item class="pa-0">
+            <v-card-title
+              ><div class="text-h4 text-sm-h3 text-md-h2 pb-2 text-left pl-4">
+                <span class="font-weight-black">Welcome to</span><br />
+                <span class="text-h5 text-sm-h4 text-md-h3"
+                  >student portal</span
+                >
+              </div></v-card-title
             >
-              <v-card-item>
-                <v-card-title
-                  ><div class="text-h4 text-sm-h3 pb-2 text-sm-left">
-                    <span class="font-weight-black">Welcome to</span><br />
-                    student portal
-                  </div></v-card-title
-                >
 
-                <v-card-subtitle
-                  ><div
-                    class="font-weight-medium text-subtitle-1 text-sm-left pb-sm-5"
-                  >
-                    login to access your account
-                  </div></v-card-subtitle
-                >
-              </v-card-item>
+            <v-card-subtitle
+              ><div
+                class="font-weight-medium text-subtitle-1 text-left pb-sm-5 pl-4"
+              >
+                login to access your account
+              </div></v-card-subtitle
+            >
+          </v-card-item>
 
-              <v-card-text class="pa-sm-0">
-                <div>
-                  <img src="/src/assets/images/banner.png" alt="login-img" />
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
+          <v-card-text class="pa-sm-0">
+            <div>
+              <img src="/src/assets/images/banner.png" alt="login-img" />
+            </div>
+          </v-card-text>
+        </v-card>
       </section>
     </main>
   </section>
@@ -119,6 +117,7 @@ const visible = ref(false);
 * {
   font-family: "poppins", sans-serif;
   font-weight: 400;
+  box-sizing: border-box;
 }
 
 main {
@@ -133,6 +132,7 @@ main {
     justify-content: center;
     align-items: center;
     flex: 1;
+    background-color: #2937b1;
   }
 
   .content {
@@ -150,16 +150,12 @@ main {
   }
 
   .purple-section {
-    height: 100vh;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: auto;
   }
 }
 
