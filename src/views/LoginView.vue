@@ -14,8 +14,8 @@
             Enter your account details
           </p>
           <v-text-field
-            placeholder="Username"
-            prepend-inner-icon="mdi-account-outline"
+            placeholder="Email"
+            prepend-inner-icon="mdi-email-outline"
             variant="underlined"
             :rules="[(value) => !!value || 'Username cannot be empty']"
             required
