@@ -9,15 +9,60 @@
           max-width="600"
           rounded="0"
         >
-          <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
+          <h2 class="pb-2 font-weight-bold text-h4">User Registration</h2>
           <p class="pb-4 font-weight-medium text-subtitle-1">
-            Enter your account details
+            Enter your details
           </p>
           <v-text-field
-            placeholder="Username"
+            placeholder="Firstname"
             prepend-inner-icon="mdi-account-outline"
             variant="underlined"
-            :rules="[(value) => !!value || 'Username cannot be empty']"
+            :rules="[(value) => !!value || 'Firstname cannot be empty']"
+            required
+          >
+          </v-text-field>
+
+          <v-text-field
+            placeholder="Surname"
+            prepend-inner-icon="mdi-account-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Surname cannot be empty']"
+            required
+          >
+          </v-text-field>
+
+          <v-text-field
+            placeholder="Email"
+            prepend-inner-icon="mdi-email-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Email cannot be empty']"
+            required
+          >
+          </v-text-field>
+
+          <v-text-field
+            placeholder="Phone Num"
+            prepend-inner-icon="mdi-phone-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Phone Num cannot be empty']"
+            required
+          >
+          </v-text-field>
+
+          <v-text-field
+            placeholder="Reg Num"
+            prepend-inner-icon="mdi-notebook-edit-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Reg Num cannot be empty']"
+            required
+          >
+          </v-text-field>
+
+          <v-text-field
+            placeholder="Department"
+            prepend-inner-icon="mdi-school-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Department cannot be empty']"
             required
           >
           </v-text-field>
@@ -33,36 +78,45 @@
             @click:append-inner="visible = !visible"
           ></v-text-field>
 
-          <div>
-            <a
-              class="text-caption text-decoration-none text-white"
-              href="#"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Forgot Password?</a
-            >
-          </div>
+          <v-text-field
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            placeholder="Confirm Password"
+            prepend-inner-icon="mdi-lock-outline"
+            variant="underlined"
+            :rules="[(value) => !!value || 'Password cannot be empty']"
+            required
+            @click:append-inner="visible = !visible"
+          ></v-text-field>
 
-          <v-btn
-            block
-            class="mb-15 mt-8 text-capitalize"
-            size="large"
+          <v-checkbox
+            v-model="terms"
             color="myPurple"
-          >
-            Login
-          </v-btn>
+            label="I have verified that my details are authentic"
+          ></v-checkbox>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn variant="outlined" color="deep-purple-lighten-2">
+              Complete Registration
+
+              <v-icon icon="mdi-chevron-right" end></v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <v-divider class="mt-5"></v-divider>
 
           <div
-            class="text-caption d-flex align-center justify-space-between mb-10"
+            class="text-caption d-flex align-center justify-space-between mt-5"
           >
-            <span class="text-white">Don't have an account?</span>
+            <span class="text-white">Already have an account?</span>
 
             <v-btn class="mt" color="grey-darken-3" size="small">
               <router-link
-                to="/register"
+                to="/"
                 class="text-white text-decoration-none text-capitalize"
-                >Sign up</router-link
+                >Sign in</router-link
               >
             </v-btn>
           </div>
@@ -91,7 +145,7 @@
               ><div
                 class="font-weight-medium text-subtitle-1 text-left pb-sm-5 pl-4"
               >
-                login to access your account
+                Register your account
               </div></v-card-subtitle
             >
           </v-card-item>
