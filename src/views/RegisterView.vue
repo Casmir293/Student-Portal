@@ -77,23 +77,34 @@
           </v-text-field>
 
           <v-text-field
+            v-model="password"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             placeholder="Password"
             prepend-inner-icon="mdi-lock-outline"
             variant="underlined"
-            :rules="[(value) => !!value || 'Password cannot be empty']"
+            :rules="[
+              (value) => !!value || 'Password cannot be empty',
+              (value) =>
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^])[A-Za-z\d@$!%*?&^]{8,}$/.test(
+                  value
+                ) || 'Password must meet complexity requirements',
+            ]"
             required
             @click:append-inner="visible = !visible"
           ></v-text-field>
 
           <v-text-field
+            v-model="confirmPassword"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             placeholder="Confirm Password"
             prepend-inner-icon="mdi-lock-outline"
             variant="underlined"
-            :rules="[(value) => !!value || 'Password cannot be empty']"
+            :rules="[
+              (value) => !!value || 'Password cannot be empty',
+              (value) => value === password || 'Passwords do not match',
+            ]"
             required
             @click:append-inner="visible = !visible"
           ></v-text-field>
@@ -175,6 +186,8 @@ import { ref, watch } from "vue";
 
 const visible = ref(false);
 const formattedRegNum = ref("");
+const password = ref("");
+const confirmPassword = ref("");
 
 watch(formattedRegNum, (newValue) => {
   // Automatically insert "/" after the first four digits
