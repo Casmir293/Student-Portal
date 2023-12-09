@@ -86,9 +86,10 @@
             :rules="[
               (value) => !!value || 'Password cannot be empty',
               (value) =>
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^])[A-Za-z\d@$!%*?&^]{8,}$/.test(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_`+={}[\]|\\:;'<>,.?/£#¡€∞§¶•ªº–≠¢-]).{8,}$/.test(
                   value
-                ) || 'Password must meet complexity requirements',
+                ) ||
+                'Password must be at least 8 characters with lowercase, uppercase, digit, and special character',
             ]"
             required
             @click:append-inner="visible = !visible"
@@ -185,6 +186,7 @@
 import { ref, watch } from "vue";
 
 const visible = ref(false);
+const terms = ref(false);
 const formattedRegNum = ref("");
 const password = ref("");
 const confirmPassword = ref("");
