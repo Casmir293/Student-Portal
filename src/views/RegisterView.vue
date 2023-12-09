@@ -78,38 +78,29 @@
 
           <v-text-field
             v-model="password"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            :type="visible ? 'text' : 'password'"
+            :append-inner-icon="passwordVisible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="passwordVisible ? 'text' : 'password'"
             placeholder="Password"
             prepend-inner-icon="mdi-lock-outline"
             variant="underlined"
-            :rules="[
-              (value) => !!value || 'Password cannot be empty',
-              (value) =>
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_`+={}[\]|\\:;'<>,.?/£#¡€∞§¶•ªº–≠¢-]).{8,}$/.test(
-                  value
-                ) ||
-                'Password must be at least 8 characters with lowercase, uppercase, digit, and special character',
-            ]"
+            :rules="passwordRules"
             required
-            @click:append-inner="visible = !visible"
+            @click:append-inner="togglePasswordVisibility"
           ></v-text-field>
 
           <v-text-field
             v-model="confirmPassword"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            :type="visible ? 'text' : 'password'"
+            :append-inner-icon="
+              confirmPasswordVisible ? 'mdi-eye-off' : 'mdi-eye'
+            "
+            :type="confirmPasswordVisible ? 'text' : 'password'"
             placeholder="Confirm Password"
             prepend-inner-icon="mdi-lock-outline"
             variant="underlined"
-            :rules="[
-              (value) => !!value || 'Password cannot be empty',
-              (value) => value === password || 'Passwords do not match',
-            ]"
+            :rules="confirmPasswordRules"
             required
-            @click:append-inner="visible = !visible"
+            @click:append-inner="toggleConfirmPasswordVisibility"
           ></v-text-field>
-
           <v-checkbox
             v-model="terms"
             color="myPurple"
@@ -185,18 +176,45 @@
 <script setup>
 import { ref, watch } from "vue";
 
-const visible = ref(false);
-const terms = ref(false);
-const formattedRegNum = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+const passwordVisible = ref(false);
+const confirmPasswordVisible = ref(false);
+const terms = ref(false);
+const formattedRegNum = ref("");
 
+// Automatically insert "/" after the first four digits
 watch(formattedRegNum, (newValue) => {
-  // Automatically insert "/" after the first four digits
   if (newValue.length === 4 && !newValue.includes("/")) {
     formattedRegNum.value = newValue + "/";
   }
 });
+
+// Verify password strength
+const passwordRules = [
+  (value) => !!value || "Password cannot be empty",
+  (value) =>
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_`+={}[\]|\\:;'<>,.?/£#¡€∞§¶•ªº–≠¢-]).{8,}$/.test(
+      value
+    ) ||
+    "Password must be at least 8 characters with uppercase, lowercase, digit, and special character",
+];
+
+// Confirm Password
+const confirmPasswordRules = [
+  (value) => !!value || "Password cannot be empty",
+  (value) => value === password.value || "Passwords do not match",
+];
+
+// Password visibility toggle
+const togglePasswordVisibility = () => {
+  passwordVisible.value = !passwordVisible.value;
+};
+
+// Confirm password visibility toggle
+const toggleConfirmPasswordVisibility = () => {
+  confirmPasswordVisible.value = !confirmPasswordVisible.value;
+};
 </script>
 
 <style lang="scss" scoped>
