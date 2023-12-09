@@ -35,6 +35,7 @@
             placeholder="Email"
             prepend-inner-icon="mdi-email-outline"
             variant="underlined"
+            type="email"
             :rules="[(value) => !!value || 'Email cannot be empty']"
             required
           >
@@ -44,19 +45,27 @@
             placeholder="Phone Num"
             prepend-inner-icon="mdi-phone-outline"
             variant="underlined"
+            type="tel"
             :rules="[(value) => !!value || 'Phone Num cannot be empty']"
             required
           >
           </v-text-field>
 
           <v-text-field
+            v-model="formattedRegNum"
             placeholder="Reg Num"
             prepend-inner-icon="mdi-notebook-edit-outline"
             variant="underlined"
-            :rules="[(value) => !!value || 'Reg Num cannot be empty']"
+            type="text"
+            :rules="[
+              (value) => !!value || 'Reg Num cannot be empty',
+              (value) =>
+                /^\d{4}\/\d{5}$/.test(value) ||
+                'Must be in a valid format Eg 2023/12345',
+            ]"
             required
-          >
-          </v-text-field>
+            maxlength="10"
+          ></v-text-field>
 
           <v-text-field
             placeholder="Department"
@@ -162,9 +171,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const visible = ref(false);
+const formattedRegNum = ref("");
+
+watch(formattedRegNum, (newValue) => {
+  // Automatically insert "/" after the first four digits
+  if (newValue.length === 4 && !newValue.includes("/")) {
+    formattedRegNum.value = newValue + "/";
+  }
+});
 </script>
 
 <style lang="scss" scoped>
