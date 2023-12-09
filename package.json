@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.3.67",
+    "firebase": "^10.7.1",
     "pinia": "^2.1.7",
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.69.5",
