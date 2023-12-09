@@ -7,7 +7,7 @@
           class="mx-auto pa-12 pb-8 text-white bg-myBlack"
           elevation="8"
           max-width="600"
-          rounded="0"
+          rounded="1"
         >
           <h2 class="pb-2 font-weight-bold text-h4">User Registration</h2>
           <p class="pb-4 font-weight-medium text-subtitle-1">
