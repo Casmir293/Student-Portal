@@ -101,6 +101,7 @@
             required
             @click:append-inner="toggleConfirmPasswordVisibility"
           ></v-text-field>
+
           <v-checkbox
             v-model="terms"
             color="myPurple"
