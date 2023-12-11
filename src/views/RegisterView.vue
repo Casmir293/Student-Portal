@@ -181,7 +181,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { getDatabase, ref as dbRef, set } from "firebase/database";
-
+// NB: ADD THESE CONSTANTS AS VMODEL
 const passwordVisible = ref(false);
 const confirmPasswordVisible = ref(false);
 const terms = ref(false);
