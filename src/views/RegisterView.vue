@@ -111,7 +111,11 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn variant="outlined" color="deep-purple-lighten-2">
+            <v-btn
+              @click="submitForm"
+              variant="outlined"
+              color="deep-purple-lighten-2"
+            >
               Complete Registration
 
               <v-icon icon="mdi-chevron-right" end></v-icon>
@@ -176,13 +180,40 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { getDatabase, ref as dbRef, set } from "firebase/database";
 
-const password = ref("");
-const confirmPassword = ref("");
 const passwordVisible = ref(false);
 const confirmPasswordVisible = ref(false);
 const terms = ref(false);
+const firstname = ref("");
+const surname = ref("");
+const email = ref("");
+const phoneNum = ref("");
 const formattedRegNum = ref("");
+const department = ref("");
+const password = ref("");
+const confirmPassword = ref("");
+
+const submitForm = async () => {
+  try {
+    const userData = {
+      firstname: firstname.value,
+      surname: surname.value,
+      email: email.value,
+      phoneNum: phoneNum.value,
+      regNum: formattedRegNum.value,
+      department: department.value,
+      password: password.value,
+    };
+
+    const db = getDatabase();
+    await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+
+    console.log("Data successfully submitted to Firebase");
+  } catch (error) {
+    console.error("Error submitting data to Firebase:", error.message);
+  }
+};
 
 // Automatically insert "/" after the first four digits
 watch(formattedRegNum, (newValue) => {
