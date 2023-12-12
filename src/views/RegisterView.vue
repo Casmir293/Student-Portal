@@ -14,6 +14,7 @@
             Enter your details
           </p>
           <v-text-field
+            v-model="firstname"
             placeholder="Firstname"
             prepend-inner-icon="mdi-account-outline"
             variant="underlined"
@@ -23,6 +24,7 @@
           </v-text-field>
 
           <v-text-field
+            v-model="surname"
             placeholder="Surname"
             prepend-inner-icon="mdi-account-outline"
             variant="underlined"
@@ -32,6 +34,7 @@
           </v-text-field>
 
           <v-text-field
+            v-model="email"
             placeholder="Email"
             prepend-inner-icon="mdi-email-outline"
             variant="underlined"
@@ -42,6 +45,7 @@
           </v-text-field>
 
           <v-text-field
+            v-model="phoneNum"
             placeholder="Phone Num"
             prepend-inner-icon="mdi-phone-outline"
             variant="underlined"
@@ -68,6 +72,7 @@
           ></v-text-field>
 
           <v-text-field
+            v-model="department"
             placeholder="Department"
             prepend-inner-icon="mdi-school-outline"
             variant="underlined"
@@ -181,7 +186,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import { getDatabase, ref as dbRef, set } from "firebase/database";
-// NB: ADD THESE CONSTANTS AS VMODEL
+
 const passwordVisible = ref(false);
 const confirmPasswordVisible = ref(false);
 const terms = ref(false);
@@ -204,6 +209,7 @@ const submitForm = async () => {
       regNum: formattedRegNum.value,
       department: department.value,
       password: password.value,
+      terms: terms.value,
     };
 
     const db = getDatabase();
