@@ -39,7 +39,7 @@
             prepend-inner-icon="mdi-email-outline"
             variant="underlined"
             type="email"
-            :rules="[(value) => !!value || 'Email cannot be empty']"
+            :rules="emailRules"
             required
           >
           </v-text-field>
@@ -71,15 +71,16 @@
             maxlength="10"
           ></v-text-field>
 
-          <v-text-field
+          <v-select
             v-model="department"
-            placeholder="Department"
+            label="Department"
+            :items="courseList"
             prepend-inner-icon="mdi-school-outline"
             variant="underlined"
             :rules="[(value) => !!value || 'Department cannot be empty']"
             required
           >
-          </v-text-field>
+          </v-select>
 
           <v-text-field
             v-model="password"
@@ -196,6 +197,7 @@ const email = ref("");
 const phoneNum = ref("");
 const formattedRegNum = ref("");
 const department = ref("");
+const courseList = ref(["Frontend Web Development", "Backend Web Development"]);
 const password = ref("");
 const confirmPassword = ref("");
 
@@ -228,6 +230,12 @@ watch(formattedRegNum, (newValue) => {
     formattedRegNum.value = newValue + "/";
   }
 });
+
+// Verify correct email format
+const emailRules = [
+  (value) => !!value || "Email cannot be empty",
+  (value) => /.+@.+\..+/.test(value) || "Enter a valid email address",
+];
 
 // Verify password strength
 const passwordRules = [
