@@ -199,6 +199,7 @@ const department = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 
+// Submit registration form to database
 const submitForm = async () => {
   try {
     const userData = {
@@ -215,7 +216,7 @@ const submitForm = async () => {
     const db = getDatabase();
     await set(dbRef(db, "users/" + formattedRegNum.value), userData);
 
-    console.log("Data successfully submitted to Firebase");
+    alert("Your Registration was Successful!");
   } catch (error) {
     console.error("Error submitting data to Firebase:", error.message);
   }
