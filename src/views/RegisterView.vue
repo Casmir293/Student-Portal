@@ -215,17 +215,24 @@ const submitForm = async () => {
   if (
     !firstname.value ||
     !surname.value ||
-    !email.value ||
+    !(email.value && /.+@.+\..+/.test(email.value)) ||
     !phoneNum.value ||
-    !formattedRegNum.value ||
+    !(formattedRegNum.value && /^\d{4}\/\d{5}$/.test(formattedRegNum.value)) ||
     !department.value ||
-    !password.value ||
-    !confirmPassword.value
+    !(
+      password.value &&
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_`+={}[\]|\\:;'<>,.?/£#¡€∞§¶•ªº–≠¢-]).{8,}$/.test(
+        password.value
+      )
+    ) ||
+    !(confirmPassword.value && confirmPassword.value === password.value) ||
+    !terms.value
   ) {
-    alert("Please complete all fields");
+    alert("Fill all fields correctly!");
     return;
   } else {
     try {
+      // Submit form when all conditions are met
       const userData = {
         firstname: firstname.value,
         surname: surname.value,
