@@ -197,7 +197,15 @@ const email = ref("");
 const phoneNum = ref("");
 const formattedRegNum = ref("");
 const department = ref("");
-const courseList = ref(["Frontend Web Development", "Backend Web Development"]);
+const courseList = ref([
+  "Frontend Web Development",
+  "Backend Web Development",
+  "Full-Stack Web Development",
+  "Mobile App Development",
+  "Web Design (UI/UX)",
+  "Data Analytics",
+  "Graphic Design",
+]);
 const password = ref("");
 const confirmPassword = ref("");
 
