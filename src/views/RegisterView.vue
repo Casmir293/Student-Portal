@@ -211,24 +211,39 @@ const confirmPassword = ref("");
 
 // Submit registration form to database
 const submitForm = async () => {
-  try {
-    const userData = {
-      firstname: firstname.value,
-      surname: surname.value,
-      email: email.value,
-      phoneNum: phoneNum.value,
-      regNum: formattedRegNum.value,
-      department: department.value,
-      password: password.value,
-      terms: terms.value,
-    };
+  // Check if all fields are filled
+  if (
+    !firstname.value ||
+    !surname.value ||
+    !email.value ||
+    !phoneNum.value ||
+    !formattedRegNum.value ||
+    !department.value ||
+    !password.value ||
+    !confirmPassword.value
+  ) {
+    alert("Please complete all fields");
+    return;
+  } else {
+    try {
+      const userData = {
+        firstname: firstname.value,
+        surname: surname.value,
+        email: email.value,
+        phoneNum: phoneNum.value,
+        regNum: formattedRegNum.value,
+        department: department.value,
+        password: password.value,
+        terms: terms.value,
+      };
 
-    const db = getDatabase();
-    await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+      const db = getDatabase();
+      await set(dbRef(db, "users/" + formattedRegNum.value), userData);
 
-    alert("Your Registration was Successful!");
-  } catch (error) {
-    console.error("Error submitting data to Firebase:", error.message);
+      console.log("Your Registration was Successful!");
+    } catch (error) {
+      console.error("Error submitting data to Firebase:", error.message);
+    }
   }
 };
 
