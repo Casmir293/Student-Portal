@@ -188,7 +188,7 @@
 import { ref, watch } from "vue";
 import { auth } from "../main";
 import { applyActionCode } from "firebase/auth";
-// import { getDatabase, ref as dbRef, set } from "firebase/database";
+import { getDatabase, ref as dbRef, set } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -258,6 +258,20 @@ const submitForm = async () => {
         "Registration successful. Please check your email for verification."
       );
 
+      // Store user details in the Realtime Database
+      const userData = {
+        firstname: firstname.value,
+        surname: surname.value,
+        email: email.value,
+        phoneNum: phoneNum.value,
+        regNum: formattedRegNum.value,
+        department: department.value,
+        password: password.value,
+      };
+
+      const db = getDatabase();
+      await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+
       // Redirect or navigate to the user's page upon successful registration
       // (You can implement your own routing logic here)
       // router.push('/user-profile');
@@ -265,28 +279,6 @@ const submitForm = async () => {
       console.error("Error submitting data to Firebase:", error.message);
     }
   }
-  //else {
-  //   try {
-  //     // Submit form when all conditions are met
-  //     const userData = {
-  //       firstname: firstname.value,
-  //       surname: surname.value,
-  //       email: email.value,
-  //       phoneNum: phoneNum.value,
-  //       regNum: formattedRegNum.value,
-  //       department: department.value,
-  //       password: password.value,
-  //       terms: terms.value,
-  //     };
-
-  //     const db = getDatabase();
-  //     await set(dbRef(db, "users/" + formattedRegNum.value), userData);
-
-  //     console.log("Your Registration was Successful!");
-  //   } catch (error) {
-  //     console.error("Error submitting data to Firebase:", error.message);
-  //   }
-  // }
 };
 
 // Automatically insert "/" after the first four digits
