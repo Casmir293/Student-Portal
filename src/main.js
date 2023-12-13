@@ -6,6 +6,7 @@ import { createPinia } from "pinia";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { firebaseConfig } from "./services/firebase";
+import { getAuth } from "firebase/auth";
 
 import App from "./App.vue";
 import router from "./router";
@@ -35,7 +36,10 @@ const vuetify = createVuetify({
 
 const app = createApp(App);
 const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
 const analytics = getAnalytics(firebaseApp);
+
+export { auth };
 
 app.use(createPinia());
 app.use(router);

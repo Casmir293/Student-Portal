@@ -186,7 +186,14 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import { getDatabase, ref as dbRef, set } from "firebase/database";
+import { auth } from "../main";
+import { applyActionCode } from "firebase/auth";
+// import { getDatabase, ref as dbRef, set } from "firebase/database";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 
 const passwordVisible = ref(false);
 const confirmPasswordVisible = ref(false);
@@ -232,26 +239,54 @@ const submitForm = async () => {
     return;
   } else {
     try {
-      // Submit form when all conditions are met
-      const userData = {
-        firstname: firstname.value,
-        surname: surname.value,
-        email: email.value,
-        phoneNum: phoneNum.value,
-        regNum: formattedRegNum.value,
-        department: department.value,
-        password: password.value,
-        terms: terms.value,
-      };
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      );
 
-      const db = getDatabase();
-      await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+      // Send email verification
+      await sendEmailVerification(userCredential.user);
 
-      console.log("Your Registration was Successful!");
+      // Update user profile (optional)
+      await updateProfile(userCredential.user, {
+        displayName: firstname.value + " " + surname.value,
+      });
+
+      alert(
+        "Registration successful. Please check your email for verification."
+      );
+
+      // Redirect or navigate to the user's page upon successful registration
+      // (You can implement your own routing logic here)
+      // router.push('/user-profile');
     } catch (error) {
       console.error("Error submitting data to Firebase:", error.message);
     }
   }
+  //else {
+  //   try {
+  //     // Submit form when all conditions are met
+  //     const userData = {
+  //       firstname: firstname.value,
+  //       surname: surname.value,
+  //       email: email.value,
+  //       phoneNum: phoneNum.value,
+  //       regNum: formattedRegNum.value,
+  //       department: department.value,
+  //       password: password.value,
+  //       terms: terms.value,
+  //     };
+
+  //     const db = getDatabase();
+  //     await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+
+  //     console.log("Your Registration was Successful!");
+  //   } catch (error) {
+  //     console.error("Error submitting data to Firebase:", error.message);
+  //   }
+  // }
 };
 
 // Automatically insert "/" after the first four digits
