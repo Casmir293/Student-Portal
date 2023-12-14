@@ -187,7 +187,6 @@
 <script setup>
 import { ref, watch } from "vue";
 import { auth } from "../main";
-import { applyActionCode } from "firebase/auth";
 import { getDatabase, ref as dbRef, set } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
