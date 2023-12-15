@@ -121,10 +121,18 @@
               @click="submitForm"
               variant="outlined"
               color="deep-purple-lighten-2"
+              :disabled="loading"
             >
-              Complete Registration
-
-              <v-icon icon="mdi-chevron-right" end></v-icon>
+              <div v-if="loading">
+                <v-progress-circular
+                  indeterminate
+                  color="deep-purple"
+                ></v-progress-circular>
+              </div>
+              <div v-else>
+                Complete Registration
+                <v-icon icon="mdi-chevron-right" end></v-icon>
+              </div>
             </v-btn>
           </v-card-actions>
 
@@ -214,6 +222,7 @@ const courseList = ref([
 ]);
 const password = ref("");
 const confirmPassword = ref("");
+const loading = ref(false);
 
 // Submit registration form to database
 const submitForm = async () => {
@@ -238,6 +247,7 @@ const submitForm = async () => {
     return;
   } else {
     try {
+      loading.value = true;
       // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -276,6 +286,8 @@ const submitForm = async () => {
       // router.push('/user-profile');
     } catch (error) {
       console.error("Error submitting data to Firebase:", error.message);
+    } finally {
+      loading.value = false;
     }
   }
 };
