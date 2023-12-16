@@ -189,10 +189,13 @@
         </v-card>
       </section>
     </main>
+
+    <successful />
   </section>
 </template>
 
 <script setup>
+import Successful from "../components/SuccessfulComp.vue";
 import { ref, watch } from "vue";
 import { auth } from "../main";
 import { getDatabase, ref as dbRef, set } from "firebase/database";
