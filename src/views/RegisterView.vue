@@ -143,7 +143,7 @@
           >
             <span class="text-white">Already have an account?</span>
 
-            <v-btn class="mt" color="grey-darken-3" size="small">
+            <v-btn color="grey-darken-3" size="small">
               <router-link
                 to="/"
                 class="text-white text-decoration-none text-capitalize"

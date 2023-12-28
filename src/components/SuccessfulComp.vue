@@ -1,11 +1,11 @@
 <template>
-  <div class="text-center">
-    <v-card width="400">
+  <div class="text-center bg-myBlack py-10 px-4">
+    <v-card max-width="400" class="bg-grey-darken-1 mx-auto">
       <v-card-text>
         <img
           src="../assets/images/successful.png"
           alt="successful"
-          class="w-50 h-auto"
+          class="w-50"
         />
       </v-card-text>
       <v-card-item>
@@ -16,9 +16,13 @@
         >
       </v-card-item>
 
-      <v-card-actions>
-        <v-btn> <router-link to="/">Exit</router-link> </v-btn>
-      </v-card-actions>
+      <v-btn class="mx-auto mb-10" color="grey-darken-3" size="small">
+        <router-link
+          to="/"
+          class="text-white text-decoration-none text-capitalize"
+          >Exit</router-link
+        >
+      </v-btn>
     </v-card>
   </div>
 </template>
