@@ -1,5 +1,8 @@
 <template>
-  <section class="content">
+  <!-- Registration Success -->
+  <successful v-if="registrationSuccess" />
+
+  <section v-else class="content">
     <main>
       <!-- Dark Section -->
       <section class="dark-section bg-myBlack">
@@ -189,8 +192,6 @@
         </v-card>
       </section>
     </main>
-
-    <successful />
   </section>
 </template>
 
@@ -226,6 +227,7 @@ const courseList = ref([
 const password = ref("");
 const confirmPassword = ref("");
 const loading = ref(false);
+const registrationSuccess = ref(false);
 
 // Submit registration form to database
 const submitForm = async () => {
@@ -251,6 +253,7 @@ const submitForm = async () => {
   } else {
     try {
       loading.value = true;
+      registrationSuccess.value = true;
       // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
