@@ -253,7 +253,6 @@ const submitForm = async () => {
   } else {
     try {
       loading.value = true;
-      registrationSuccess.value = true;
       // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -269,9 +268,7 @@ const submitForm = async () => {
         displayName: firstname.value + " " + surname.value,
       });
 
-      alert(
-        "Registration successful. Please check your email for verification."
-      );
+      registrationSuccess.value = true;
 
       // Store user details in the Realtime Database
       const userData = {
