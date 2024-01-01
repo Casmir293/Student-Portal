@@ -130,11 +130,13 @@ const login = async () => {
     );
 
     // Redirect or navigate to the user's page upon successful login
-    // (You can implement your own routing logic here)
-    router.push("/user-profile");
+    router.push("/student");
   } catch (error) {
-    console.error("Error logging in:", error.message);
     // Handle login error (show error message to the user, etc.)
+    console.error("Error logging in:", error.message);
+    if (error.message === "Firebase: Error (auth/invalid-email).") {
+      alert("Input correct email & password!");
+    }
   }
 };
 </script>
