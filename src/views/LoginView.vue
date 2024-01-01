@@ -14,6 +14,7 @@
             Enter your account details
           </p>
           <v-text-field
+            v-model="email"
             placeholder="Email"
             prepend-inner-icon="mdi-email-outline"
             variant="underlined"
@@ -23,6 +24,7 @@
           </v-text-field>
 
           <v-text-field
+            v-model="password"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             placeholder="Password"
@@ -45,6 +47,7 @@
           </div>
 
           <v-btn
+            @click="login"
             block
             class="mb-15 mt-8 text-capitalize"
             size="large"
@@ -109,8 +112,31 @@
 
 <script setup>
 import { ref } from "vue";
+import { auth } from "../main";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import router from "../router";
 
 const visible = ref(false);
+const email = ref("");
+const password = ref("");
+
+const login = async () => {
+  try {
+    // Sign in with email and password
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+
+    // Redirect or navigate to the user's page upon successful login
+    // (You can implement your own routing logic here)
+    router.push("/user-profile");
+  } catch (error) {
+    console.error("Error logging in:", error.message);
+    // Handle login error (show error message to the user, etc.)
+  }
+};
 </script>
 
 <style lang="scss" scoped>
