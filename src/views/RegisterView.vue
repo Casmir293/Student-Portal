@@ -288,7 +288,16 @@ const submitForm = async () => {
       // (You can implement your own routing logic here)
       // router.push('/user-profile');
     } catch (error) {
-      console.error("Error submitting data to Firebase:", error.message);
+      console.error(
+        "Error submitting data to Firebase:",
+        error.code,
+        error.message
+      );
+      if (error.code === "auth/email-already-in-use") {
+        alert("This email is already in use. Please use a different email.");
+      } else {
+        alert("An error occurred during registration. Please try again later.");
+      }
     } finally {
       loading.value = false;
     }
