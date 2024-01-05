@@ -2043,6 +2043,37 @@
               />
             </section>
           </section>
+
+          <!-- daily notice -->
+          <section>
+            <p class="py-8 px-12 font-weight-bold">Daily Notice</p>
+
+            <v-card class="mx-auto rounded-xl" max-width="250">
+              <v-card-item>
+                <div class="pa-3">
+                  <div class="mb-1 font-weight-bold">Happy New Year</div>
+                  <div class="text-caption text-grey">
+                    We welcome you to a new academic year and session and we
+                    hope to build amaizing things with you all along...
+                    <br />
+                    <span class="text-blue">See more</span>
+                  </div>
+                </div>
+              </v-card-item>
+
+              <v-card-item>
+                <div class="pa-3 pt-0">
+                  <div class="mb-1 font-weight-bold">Holiday Project</div>
+                  <div class="text-caption text-grey">
+                    All students are expected to submit their holiday projects
+                    next week Monday ...
+                    <br />
+                    <span class="text-blue">See more</span>
+                  </div>
+                </div>
+              </v-card-item>
+            </v-card>
+          </section>
         </section>
       </v-app>
     </section>
