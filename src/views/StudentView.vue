@@ -2020,6 +2020,29 @@
               </div>
             </section>
           </section>
+
+          <!-- course instructors -->
+          <section>
+            <p class="py-8 font-weight-bold">Course Instructors</p>
+
+            <section class="d-flex justify-space-around px-4">
+              <img
+                src="../assets/images/instructor_1.png"
+                alt="instructor_1"
+                class="enrolled w-25 rounded-circle"
+              />
+              <img
+                src="../assets/images/instructor_2.jpeg"
+                alt="instructor_2"
+                class="enrolled w-25 rounded-circle"
+              />
+              <img
+                src="../assets/images/instructor_3.jpeg"
+                alt="instructor_3"
+                class="enrolled w-25 rounded-circle"
+              />
+            </section>
+          </section>
         </section>
       </v-app>
     </section>
@@ -2030,6 +2053,6 @@
 
 <style lang="scss" scoped>
 .enrolled {
-  border: 2px solid #2937b1;
+  border: 3px solid #2937b1;
 }
 </style>
