@@ -51,8 +51,12 @@
         <section class="px-4 py-8 bg-grey-lighten-4">
           <!-- finance -->
           <p class="pb-8 font-weight-bold">Finance</p>
-          <section>
-            <v-card class="mx-auto text-center rounded-lg py-3" max-width="200">
+          <section class="d-sm-flex">
+            <v-card
+              class="mx-auto text-center rounded-lg py-3"
+              width="200"
+              height="190"
+            >
               <v-card-item>
                 <div>
                   <svg
@@ -797,8 +801,9 @@
             </v-card>
 
             <v-card
-              class="mx-auto text-center rounded-lg py-3 my-5"
-              max-width="200"
+              class="mx-auto text-center rounded-lg py-3 my-5 my-sm-0"
+              width="200"
+              height="190"
             >
               <v-card-item>
                 <div>
@@ -1038,7 +1043,11 @@
               </v-card-item>
             </v-card>
 
-            <v-card class="mx-auto text-center rounded-lg py-3" max-width="200">
+            <v-card
+              class="mx-auto text-center rounded-lg py-3"
+              width="200"
+              height="190"
+            >
               <v-card-item>
                 <div>
                   <svg
