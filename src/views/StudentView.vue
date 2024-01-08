@@ -1998,8 +1998,8 @@
           </section>
 
           <!-- enrolled courses -->
-          <section>
-            <p class="py-8 font-weight-bold">Enrolled Course</p>
+          <p class="py-8 font-weight-bold">Enrolled Course</p>
+          <section class="course">
             <section
               class="enrolled bg-deep-purple-lighten-4 rounded-lg d-flex py-3 px-6 justify-space-between"
             >
@@ -2112,6 +2112,11 @@
     grid-template-columns: 60% 40%;
     align-items: center;
     justify-items: start;
+  }
+
+  .course {
+    width: 350px;
+    margin: 0 auto;
   }
 }
 </style>
