@@ -22,7 +22,9 @@
         <section class="bg-myPurple rounded-0 pt-4">
           <div class="hero px-sm-5">
             <div>
-              <div class="text-overline mb-1 text-grey">January 2, 2024</div>
+              <div class="text-overline mb-1 ml-3 text-grey">
+                January 2, 2024
+              </div>
               <div
                 class="text-h6 mb-1 font-weight-bold text-center text-sm-left"
               >
