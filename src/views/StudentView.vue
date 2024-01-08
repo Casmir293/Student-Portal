@@ -2034,58 +2034,60 @@
             </section>
           </section>
 
-          <!-- course instructors -->
-          <section>
-            <p class="py-8 font-weight-bold">Course Instructors</p>
+          <section class="course-notice">
+            <!-- course instructors -->
+            <section>
+              <p class="py-8 font-weight-bold">Course Instructors</p>
 
-            <section class="d-flex justify-space-around px-4">
-              <img
-                src="../assets/images/instructor_1.png"
-                alt="instructor_1"
-                class="enrolled w-25 rounded-circle"
-              />
-              <img
-                src="../assets/images/instructor_2.jpeg"
-                alt="instructor_2"
-                class="enrolled w-25 rounded-circle"
-              />
-              <img
-                src="../assets/images/instructor_3.jpeg"
-                alt="instructor_3"
-                class="enrolled w-25 rounded-circle"
-              />
+              <section class="d-flex justify-space-around px-4">
+                <img
+                  src="../assets/images/instructor_1.png"
+                  alt="instructor_1"
+                  class="enrolled w-25 rounded-circle"
+                />
+                <img
+                  src="../assets/images/instructor_2.jpeg"
+                  alt="instructor_2"
+                  class="enrolled w-25 rounded-circle"
+                />
+                <img
+                  src="../assets/images/instructor_3.jpeg"
+                  alt="instructor_3"
+                  class="enrolled w-25 rounded-circle"
+                />
+              </section>
             </section>
-          </section>
 
-          <!-- daily notice -->
-          <section>
-            <p class="py-8 px-12 font-weight-bold">Daily Notice</p>
+            <!-- daily notice -->
+            <section>
+              <p class="py-8 px-12 font-weight-bold">Daily Notice</p>
 
-            <v-card class="mx-auto rounded-xl" max-width="250">
-              <v-card-item>
-                <div class="pa-3">
-                  <div class="mb-1 font-weight-bold">Happy New Year</div>
-                  <div class="text-caption text-grey">
-                    We welcome you to a new academic year and session and we
-                    hope to build amaizing things with you all along...
-                    <br />
-                    <span class="text-blue">See more</span>
+              <v-card class="mx-auto rounded-xl" max-width="250">
+                <v-card-item>
+                  <div class="pa-3">
+                    <div class="mb-1 font-weight-bold">Happy New Year</div>
+                    <div class="text-caption text-grey">
+                      We welcome you to a new academic year and session and we
+                      hope to build amaizing things with you all along...
+                      <br />
+                      <span class="text-blue">See more</span>
+                    </div>
                   </div>
-                </div>
-              </v-card-item>
+                </v-card-item>
 
-              <v-card-item>
-                <div class="pa-3 pt-0">
-                  <div class="mb-1 font-weight-bold">Holiday Project</div>
-                  <div class="text-caption text-grey">
-                    All students are expected to submit their holiday projects
-                    next week Monday ...
-                    <br />
-                    <span class="text-blue">See more</span>
+                <v-card-item>
+                  <div class="pa-3 pt-0">
+                    <div class="mb-1 font-weight-bold">Holiday Project</div>
+                    <div class="text-caption text-grey">
+                      All students are expected to submit their holiday projects
+                      next week Monday ...
+                      <br />
+                      <span class="text-blue">See more</span>
+                    </div>
                   </div>
-                </div>
-              </v-card-item>
-            </v-card>
+                </v-card-item>
+              </v-card>
+            </section>
           </section>
         </section>
       </v-app>
@@ -2117,6 +2119,11 @@
   .course {
     width: 350px;
     margin: 0 auto;
+  }
+
+  .course-notice {
+    display: grid;
+    grid-template-columns: 50% 50%;
   }
 }
 </style>
