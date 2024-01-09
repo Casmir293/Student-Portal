@@ -19,7 +19,7 @@
 
         <!-- hero -->
 
-        <section class="bg-myPurple rounded-0 pt-4 px-lg-16">
+        <section class="content bg-myPurple rounded-0 pt-4">
           <div class="hero px-sm-5">
             <div>
               <div
@@ -52,7 +52,7 @@
         </section>
 
         <!-- content -->
-        <section class="px-4 py-8 bg-grey-lighten-4">
+        <section class="content px-4 py-8 bg-grey-lighten-4">
           <!-- finance -->
           <p class="pb-8 font-weight-bold">Finance</p>
           <section class="d-sm-flex">
@@ -2139,6 +2139,11 @@
 
   .welcome {
     font-size: 2rem !important;
+  }
+
+  .content {
+    padding-right: 15rem !important;
+    padding-left: 15rem !important;
   }
 }
 </style>
