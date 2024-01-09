@@ -19,18 +19,20 @@
 
         <!-- hero -->
 
-        <section class="bg-myPurple rounded-0 pt-4">
+        <section class="bg-myPurple rounded-0 pt-4 px-lg-16">
           <div class="hero px-sm-5">
             <div>
-              <div class="text-overline mb-1 ml-3 text-grey">
+              <div
+                class="date text-overline mb-1 mb-sm-8 ml-3 ml-sm-0 text-grey"
+              >
                 January 2, 2024
               </div>
               <div
-                class="text-h6 mb-1 font-weight-bold text-center text-sm-left"
+                class="welcome text-h6 mb-1 mb-lg-5 font-weight-bold text-center text-sm-left"
               >
                 Welcome back, Casmir!
               </div>
-              <div class="text-caption text-grey text-center">
+              <div class="date text-caption text-grey text-center text-sm-left">
                 Always stay updated in your student portal
               </div>
             </div>
@@ -2126,6 +2128,17 @@
   .course-notice {
     display: grid;
     grid-template-columns: 50% 50%;
+  }
+}
+
+// Media Query for Laptop
+@media only screen and (min-width: 992px) {
+  .date {
+    font-size: 1rem !important;
+  }
+
+  .welcome {
+    font-size: 2rem !important;
   }
 }
 </style>
