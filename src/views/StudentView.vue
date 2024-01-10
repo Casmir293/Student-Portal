@@ -2155,7 +2155,6 @@
   .content-grid {
     display: grid;
     grid-template-columns: 70% 30%;
-    gap: 5%;
   }
 
   .course {
