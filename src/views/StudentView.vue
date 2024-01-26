@@ -2107,23 +2107,48 @@
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
-import { auth } from "../main"; // Adjust the path accordingly
+import { auth } from "../main";
 import { getDatabase, ref as databaseRef, get } from "firebase/database";
 
 const name = ref("");
 
-const getUserName = (userId) => {
-  // Fetch user's name from the Firebase Realtime Database
-  const dbRef = databaseRef(getDatabase(), `users/${userId}/firstname`);
+const getUserName = async (userId) => {
+  try {
+    // Fetch user's registration number from the Firebase Realtime Database
+    const registrationNumberRef = databaseRef(
+      getDatabase(),
+      `users/1234/56789`
+    );
+    const registrationNumberSnapshot = await get(registrationNumberRef);
+    const registrationNumber = registrationNumberSnapshot.val();
+    console.log("Registration Number:", registrationNumber);
 
-  get(dbRef)
-    .then((snapshot) => {
-      const userName = snapshot.val();
-      name.value = userName;
-    })
-    .catch((error) => {
-      console.error("Error fetching user name:", error);
-    });
+    if (!registrationNumber) {
+      console.warn("Registration number not found for the user");
+      return;
+    }
+
+    // Fetch user's name from the Firebase Realtime Database using registration number
+    const dbRef = databaseRef(getDatabase(), `users/1234/56789/firstname`);
+
+    const snapshot = await get(dbRef);
+    const userName = snapshot.val();
+
+    if (!userName) {
+      console.warn(
+        "User name not found for the registration number:",
+        registrationNumber
+      );
+      return;
+    }
+
+    name.value = userName;
+
+    // Debugging: Add this line to check if `name` is being updated
+    console.log("Name:", name.value);
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
 };
 
 // Watch for changes in the authentication state
