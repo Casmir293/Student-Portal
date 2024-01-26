@@ -34,6 +34,7 @@ const vuetify = createVuetify({
   },
 });
 
+// Initialize firebase
 const app = createApp(App);
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);

@@ -12,7 +12,7 @@
           </v-avatar>
           <div class="px-3">
             <div class="text-caption">Welcome</div>
-            <div class="font-weight-bold">Casmir Onyeka</div>
+            <div class="font-weight-bold">{{ name }}</div>
           </div>
           <v-icon icon="mdi-logout"></v-icon>
         </div>
@@ -2105,7 +2105,49 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, onMounted, watch } from "vue";
+import { auth } from "../main"; // Adjust the path accordingly
+import { getDatabase, ref as databaseRef, get } from "firebase/database";
+
+const name = ref("");
+
+const getUserName = (userId) => {
+  // Fetch user's name from the Firebase Realtime Database
+  const dbRef = databaseRef(getDatabase(), `users/${userId}/firstname`);
+
+  get(dbRef)
+    .then((snapshot) => {
+      const userName = snapshot.val();
+      name.value = userName;
+    })
+    .catch((error) => {
+      console.error("Error fetching user name:", error);
+    });
+};
+
+// Watch for changes in the authentication state
+watch(
+  () => auth.currentUser,
+  (user) => {
+    if (user) {
+      // User is authenticated, call getUserName
+      getUserName(user.uid);
+    } else {
+      // User is not authenticated, handle accordingly
+      console.warn("User not authenticated");
+    }
+  }
+);
+
+// Call getUserName on component mount if user is already authenticated
+onMounted(() => {
+  const user = auth.currentUser;
+  if (user) {
+    getUserName(user.uid);
+  }
+});
+</script>
 
 <style lang="scss" scoped>
 .enrolled {
