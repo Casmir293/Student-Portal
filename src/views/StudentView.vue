@@ -12,7 +12,7 @@
           </v-avatar>
           <div class="px-3">
             <div class="text-caption">Welcome</div>
-            <div class="font-weight-bold">{{ name }}</div>
+            <div class="font-weight-bold">{{ lastName }} {{ firstName }}</div>
           </div>
           <v-icon icon="mdi-logout"></v-icon>
         </div>
@@ -30,7 +30,7 @@
               <div
                 class="welcome text-h6 mb-1 mb-lg-5 font-weight-bold text-center text-sm-left"
               >
-                Welcome back, Casmir!
+                Welcome back, {{ firstName }}!
               </div>
               <div class="date text-caption text-grey text-center text-sm-left">
                 Always stay updated in your student portal
@@ -2010,7 +2010,7 @@
               >
                 <div class="d-flex flex-column justify-space-between">
                   <div class="text-myPurple font-weight-bold">
-                    Web Development
+                    {{ department }}
                   </div>
                   <div
                     class="bg-myPurple rounded-pill mx-auto px-5 py-1 font-weight-bold"
@@ -2110,42 +2110,32 @@ import { ref, onMounted, watch } from "vue";
 import { auth } from "../main";
 import { getDatabase, ref as databaseRef, get } from "firebase/database";
 
-const name = ref("");
+const firstName = ref("");
+const lastName = ref("");
+const department = ref("");
 
-const getUserName = async (userId) => {
+const getUserName = async () => {
   try {
-    // Fetch user's registration number from the Firebase Realtime Database
-    const registrationNumberRef = databaseRef(
-      getDatabase(),
-      `users/1234/56789`
-    );
-    const registrationNumberSnapshot = await get(registrationNumberRef);
-    const registrationNumber = registrationNumberSnapshot.val();
-    console.log("Registration Number:", registrationNumber);
-
-    if (!registrationNumber) {
-      console.warn("Registration number not found for the user");
-      return;
-    }
-
-    // Fetch user's name from the Firebase Realtime Database using registration number
-    const dbRef = databaseRef(getDatabase(), `users/1234/56789/firstname`);
-
+    // Fetch user's first name from the Firebase Realtime Database
+    const dbRef = databaseRef(getDatabase(), "users/firstname");
     const snapshot = await get(dbRef);
-    const userName = snapshot.val();
+    const myFirstName = snapshot.val();
+    firstName.value = myFirstName;
 
-    if (!userName) {
-      console.warn(
-        "User name not found for the registration number:",
-        registrationNumber
-      );
-      return;
-    }
+    // Fetch user's last name from the Firebase Realtime Database
+    const dblastName = databaseRef(getDatabase(), "users/surname");
+    const lastNamesnapshot = await get(dblastName);
+    const myLastName = lastNamesnapshot.val();
+    lastName.value = myLastName;
 
-    name.value = userName;
+    // Fetch user's course from the Firebase Realtime Database
+    const dbCourse = databaseRef(getDatabase(), "users/department");
+    const courseSnapshot = await get(dbCourse);
+    const myCourse = courseSnapshot.val();
+    department.value = myCourse;
 
-    // Debugging: Add this line to check if `name` is being updated
-    console.log("Name:", name.value);
+    // Debugging
+    console.log("Name:", firstName.value, lastName.value);
   } catch (error) {
     console.error("Error fetching user data:", error);
   }

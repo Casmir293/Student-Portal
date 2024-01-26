@@ -264,9 +264,9 @@ const submitForm = async () => {
       await sendEmailVerification(userCredential.user);
 
       // Update user profile (optional)
-      await updateProfile(userCredential.user, {
-        displayName: firstname.value + " " + surname.value,
-      });
+      // await updateProfile(userCredential.user, {
+      //   displayName: firstname.value + " " + surname.value,
+      // });
 
       registrationSuccess.value = true;
 
@@ -282,7 +282,7 @@ const submitForm = async () => {
       };
 
       const db = getDatabase();
-      await set(dbRef(db, "users/" + formattedRegNum.value), userData);
+      await set(dbRef(db, "users/"), userData);
 
       // Redirect or navigate to the user's page upon successful registration
       // (You can implement your own routing logic here)
