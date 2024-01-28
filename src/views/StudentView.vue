@@ -2136,9 +2136,6 @@ const getUserName = async () => {
     const courseSnapshot = await get(dbCourse);
     const myCourse = courseSnapshot.val();
     department.value = myCourse;
-
-    // Debugging
-    console.log("Name:", firstName.value, lastName.value);
   } catch (error) {
     console.error("Error fetching user data:", error);
   }
