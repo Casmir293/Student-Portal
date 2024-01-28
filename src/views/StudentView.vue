@@ -2106,8 +2106,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import { auth } from "../main";
+import { onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref as databaseRef, get } from "firebase/database";
 
 const firstName = ref("");
@@ -2141,26 +2142,16 @@ const getUserName = async () => {
   }
 };
 
-// Watch for changes in the authentication state
-watch(
-  () => auth.currentUser,
-  (user) => {
+// Call getUserName on component mount if user is already authenticated
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
     if (user) {
-      // User is authenticated, call getUserName
       getUserName(user.uid);
     } else {
       // User is not authenticated, handle accordingly
       console.warn("User not authenticated");
     }
-  }
-);
-
-// Call getUserName on component mount if user is already authenticated
-onMounted(() => {
-  const user = auth.currentUser;
-  if (user) {
-    getUserName(user.uid);
-  }
+  });
 });
 </script>
 
