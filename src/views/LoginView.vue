@@ -72,13 +72,14 @@
             </div>
           </div>
 
+          <!-- Forgot Password Section -->
           <div v-if="forgotPassword">
             <h2 class="pb-2 font-weight-bold text-h4">Password Reset</h2>
             <p class="pb-4 font-weight-medium text-subtitle-1">
               Enter your email
             </p>
             <v-text-field
-              v-model="email"
+              v-model="resetEmail"
               placeholder="Email"
               prepend-inner-icon="mdi-email-outline"
               variant="underlined"
@@ -86,7 +87,12 @@
               required
             >
             </v-text-field>
-            <v-btn class="mt-4" color="myPurple" size="small">
+            <v-btn
+              class="mt-4"
+              color="myPurple"
+              size="small"
+              @click="resetPassword()"
+            >
               Reset Password
             </v-btn>
 
@@ -173,6 +179,7 @@ import router from "../router";
 const visible = ref(false);
 const email = ref("");
 const password = ref("");
+const resetEmail = ref("");
 const forgotPassword = ref(false);
 const loginUI = ref(true);
 
@@ -202,6 +209,19 @@ const showResetPassword = () => {
 const showLoginUI = () => {
   forgotPassword.value = false;
   loginUI.value = true;
+};
+
+// Rest password function
+const resetPassword = async () => {
+  try {
+    const userCredential = await sendPasswordResetEmail(auth, resetEmail.value);
+    alert(`An email has been sent to ${resetEmail.value} for password reset.`);
+    forgotPassword.value = false;
+    loginUI.value = true;
+  } catch (error) {
+    alert("Input valid email:", error.message);
+    resetEmail.value = "";
+  }
 };
 </script>
 
