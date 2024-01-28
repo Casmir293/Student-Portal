@@ -2110,7 +2110,9 @@ import { ref, onMounted } from "vue";
 import { auth } from "../main";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref as databaseRef, get } from "firebase/database";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const firstName = ref("");
 const lastName = ref("");
 const department = ref("");
@@ -2148,8 +2150,7 @@ onMounted(() => {
     if (user) {
       getUserName(user.uid);
     } else {
-      // User is not authenticated, handle accordingly
-      console.warn("User not authenticated");
+      router.push("/");
     }
   });
 });
