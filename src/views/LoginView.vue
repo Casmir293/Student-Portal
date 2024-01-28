@@ -9,65 +9,116 @@
           max-width="600"
           rounded="0"
         >
-          <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
-          <p class="pb-4 font-weight-medium text-subtitle-1">
-            Enter your account details
-          </p>
-          <v-text-field
-            v-model="email"
-            placeholder="Email"
-            prepend-inner-icon="mdi-email-outline"
-            variant="underlined"
-            :rules="[(value) => !!value || 'Username cannot be empty']"
-            required
-          >
-          </v-text-field>
-
-          <v-text-field
-            v-model="password"
-            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-            :type="visible ? 'text' : 'password'"
-            placeholder="Password"
-            prepend-inner-icon="mdi-lock-outline"
-            variant="underlined"
-            :rules="[(value) => !!value || 'Password cannot be empty']"
-            required
-            @click:append-inner="visible = !visible"
-          ></v-text-field>
-
-          <div>
-            <a
-              class="text-caption text-decoration-none text-white"
-              href="#"
-              rel="noopener noreferrer"
-              target="_blank"
+          <div v-if="loginUI">
+            <h2 class="pb-2 font-weight-bold text-h4">Login</h2>
+            <p class="pb-4 font-weight-medium text-subtitle-1">
+              Enter your account details
+            </p>
+            <v-text-field
+              v-model="email"
+              placeholder="Email"
+              prepend-inner-icon="mdi-email-outline"
+              variant="underlined"
+              :rules="[(value) => !!value || 'Email cannot be empty']"
+              required
             >
-              Forgot Password?</a
+            </v-text-field>
+
+            <v-text-field
+              v-model="password"
+              :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+              :type="visible ? 'text' : 'password'"
+              placeholder="Password"
+              prepend-inner-icon="mdi-lock-outline"
+              variant="underlined"
+              :rules="[(value) => !!value || 'Password cannot be empty']"
+              required
+              @click:append-inner="visible = !visible"
+            ></v-text-field>
+
+            <div>
+              <a
+                style="cursor: pointer"
+                class="text-caption text-decoration-none text-white"
+                @click="showResetPassword()"
+                rel="noopener noreferrer"
+              >
+                Forgot Password?</a
+              >
+            </div>
+
+            <v-btn
+              @click="login"
+              block
+              class="mb-15 mt-8 text-capitalize"
+              size="large"
+              color="myPurple"
             >
+              Login
+            </v-btn>
+
+            <div
+              class="text-caption d-flex align-center justify-space-between mb-10"
+            >
+              <span class="text-white">Don't have an account?</span>
+
+              <v-btn class="mt" color="grey-darken-3" size="small">
+                <router-link
+                  to="/register"
+                  class="text-white text-decoration-none text-capitalize"
+                  >Sign up</router-link
+                >
+              </v-btn>
+            </div>
           </div>
 
-          <v-btn
-            @click="login"
-            block
-            class="mb-15 mt-8 text-capitalize"
-            size="large"
-            color="myPurple"
-          >
-            Login
-          </v-btn>
-
-          <div
-            class="text-caption d-flex align-center justify-space-between mb-10"
-          >
-            <span class="text-white">Don't have an account?</span>
-
-            <v-btn class="mt" color="grey-darken-3" size="small">
-              <router-link
-                to="/register"
-                class="text-white text-decoration-none text-capitalize"
-                >Sign up</router-link
-              >
+          <div v-if="forgotPassword">
+            <h2 class="pb-2 font-weight-bold text-h4">Password Reset</h2>
+            <p class="pb-4 font-weight-medium text-subtitle-1">
+              Enter your email
+            </p>
+            <v-text-field
+              v-model="email"
+              placeholder="Email"
+              prepend-inner-icon="mdi-email-outline"
+              variant="underlined"
+              :rules="[(value) => !!value || 'Email cannot be empty']"
+              required
+            >
+            </v-text-field>
+            <v-btn class="mt-4" color="myPurple" size="small">
+              Reset Password
             </v-btn>
+
+            <!-- Sign Up -->
+            <div
+              class="text-caption d-flex align-center justify-space-between mt-10 mb-6"
+            >
+              <span class="text-white">Don't have an account?</span>
+
+              <v-btn class="mt" color="grey-darken-3" size="small">
+                <router-link
+                  to="/register"
+                  class="text-white text-decoration-none text-capitalize"
+                  >Sign up</router-link
+                >
+              </v-btn>
+            </div>
+
+            <!-- Sign In -->
+            <div
+              class="text-caption d-flex align-center justify-space-between mt-0"
+            >
+              <span class="text-white">Already have an account?</span>
+
+              <v-btn color="grey-darken-3" size="small" @click="showLoginUI()">
+                <router-link
+                  to="/"
+                  class="text-white text-decoration-none text-capitalize"
+                  >Sign in</router-link
+                >
+              </v-btn>
+            </div>
           </div>
         </v-card>
       </section>
@@ -113,31 +164,44 @@
 <script setup>
 import { ref } from "vue";
 import { auth } from "../main";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 import router from "../router";
 
 const visible = ref(false);
 const email = ref("");
 const password = ref("");
+const forgotPassword = ref(false);
+const loginUI = ref(true);
 
+// Sign in with email and password
 const login = async () => {
   try {
-    // Sign in with email and password
     const userCredential = await signInWithEmailAndPassword(
       auth,
       email.value,
       password.value
     );
-
     // Redirect or navigate to the user's page upon successful login
     router.push("/student");
   } catch (error) {
-    // Handle login error (show error message to the user, etc.)
     console.error("Error logging in:", error.message);
     if (error.message === "Firebase: Error (auth/invalid-email).") {
       alert("Input correct email & password!");
     }
   }
+};
+
+const showResetPassword = () => {
+  forgotPassword.value = true;
+  loginUI.value = false;
+};
+
+const showLoginUI = () => {
+  forgotPassword.value = false;
+  loginUI.value = true;
 };
 </script>
 

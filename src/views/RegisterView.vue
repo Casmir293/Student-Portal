@@ -203,7 +203,6 @@ import { getDatabase, ref as dbRef, set } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
-  updateProfile,
 } from "firebase/auth";
 
 const passwordVisible = ref(false);
@@ -262,11 +261,6 @@ const submitForm = async () => {
 
       // Send email verification
       await sendEmailVerification(userCredential.user);
-
-      // Update user profile (optional)
-      // await updateProfile(userCredential.user, {
-      //   displayName: firstname.value + " " + surname.value,
-      // });
 
       registrationSuccess.value = true;
 
