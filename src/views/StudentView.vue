@@ -14,7 +14,7 @@
             <div class="text-caption">Welcome</div>
             <div class="font-weight-bold">{{ lastName }} {{ firstName }}</div>
           </div>
-          <v-icon icon="mdi-logout"></v-icon>
+          <v-icon icon="mdi-logout" @click="logout()"></v-icon>
         </div>
 
         <!-- hero -->
@@ -2108,7 +2108,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { auth } from "../main";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { getDatabase, ref as databaseRef, get } from "firebase/database";
 import { useRouter } from "vue-router";
 
@@ -2154,6 +2154,15 @@ onMounted(() => {
     }
   });
 });
+
+// Log user out
+const logout = async () => {
+  try {
+    const userCredential = await signOut(auth);
+  } catch (error) {
+    console.error("Error logging out:", error.message);
+  }
+};
 </script>
 
 <style lang="scss" scoped>
