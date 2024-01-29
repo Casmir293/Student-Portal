@@ -25,7 +25,7 @@
               <div
                 class="date text-overline mb-1 mb-sm-8 ml-3 ml-sm-0 text-grey"
               >
-                January 2, 2024
+                {{ formattedDate }}
               </div>
               <div
                 class="welcome text-h6 mb-1 mb-lg-5 font-weight-bold text-center text-sm-left"
@@ -2117,9 +2117,17 @@ const firstName = ref("");
 const lastName = ref("");
 const department = ref("");
 
+// Date
+const currentDate = ref(new Date());
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+}).format(currentDate.value);
+
+// Fetch user's first name from the Firebase Realtime Database
 const getUserName = async () => {
   try {
-    // Fetch user's first name from the Firebase Realtime Database
     const dbRef = databaseRef(getDatabase(), "users/firstname");
     const snapshot = await get(dbRef);
     const myFirstName = snapshot.val();
