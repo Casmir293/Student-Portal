@@ -277,10 +277,6 @@ const submitForm = async () => {
 
       const db = getDatabase();
       await set(dbRef(db, "users/"), userData);
-
-      // Redirect or navigate to the user's page upon successful registration
-      // (You can implement your own routing logic here)
-      // router.push('/user-profile');
     } catch (error) {
       console.error(
         "Error submitting data to Firebase:",
